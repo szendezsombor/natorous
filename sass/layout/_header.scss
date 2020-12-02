@@ -1,0 +1,71 @@
+.header {
+    height: 95vh;
+    /* Két háttér képet/szint definiálunk mindig az előrébb lévő lesz előrébb
+
+    A linear-gradient(to right ,#7ed56f, #28b485) esetében a to right paraméterrel:
+    to right - a bal oldali szin húzódik a jobb oldali szin felé
+    to left - a jobb oldali szin húzódik a bal oldali szin felé
+
+    */
+    background-image: linear-gradient(to right bottom,
+            rgba($color-primary-light, 0.8),
+            rgba($color-primary-dark, 0.8)),
+        url('../img/hero.jpg');
+    background-size: cover;
+    /* megmondja a háttérnek, hogy fit-elje bele a konténer méretbe aminek a háttere*/
+    background-position: top;
+    /* 
+    Melyik része látszódjon a képnek biztosan background-position: 
+    top - a teteje mindig látszani fog az aljából fog mindig levágni, ha már nem fér ki a kép
+    bottom - az alja mindig látszani fog a tetejéből fog mindig levágni, ha már nem fér ki a kép
+    center - az közepe mindig látszani fog a tetejéből és az aljából fog mindig levágni, ha már nem fér ki a kép
+    */
+    clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+    /*
+    A clip path függvénnyel a képet ki tudjuk vágni
+    palygon - esetén egy négyszöget vágunk ki ami látszódni fog
+    */
+    position: relative;
+    /*
+        Ezzel beállítjuk, hogy a gyerek elemek hozzá képest lesznek relative eltolva,ha offsetet állítunk
+    */
+
+    &__logo-box {
+        /* 
+        Abszolút pozicionálás:
+        - ekkor az elemünk a teljes dokumentumot veszi alapúl
+        */
+        position: absolute;
+        top: 4rem;
+        /* Offset, hogy mennyivel legyen eltolva a lgközelebbi relative elemtől fentről */
+        left: 4rem;
+        /* Offset, hogy mennyivel legyen eltolva a lgközelebbi relative elemtől balról */
+    }
+
+    &__logo {
+        height: 3.5rem;
+
+        &:hover {
+            animation: moveInRight 1s ease-out;
+        }
+    }
+
+    &__text-box {
+        position: absolute;
+        /* a legközelebbi relative elemhez képest toljuk el*/
+        top: 50%;
+        /* Eltoljuk fentről 50%-al */
+        left: 50%;
+        /* Eltoljuk balról 50%-al */
+        transform: translate(-50%, -50%);
+        /* 
+        az elem méretéhez képest eltransformáljuk
+        úgy, hogy bal irányba eltoljuk -50%-al, vagy is a div felével
+        és fentről -50%al vagy is megint a div felével
+        */
+        text-align: center;
+        /*
+        minden benne levő inline block elementet középre fog rakni ami text alapon képződött.
+        */
+    }
+}

@@ -1,0 +1,87 @@
+/* Szöveggel kapcsolatos módositások*/
+
+.heading-primary {
+    color: $color-white;
+    text-transform: uppercase;
+    /* a szöveg minden karakterét nagybetűvé alakítja */
+
+    backface-visibility: hidden;
+    /* az element hátsó része hidden lesz vagy is el lesz rejtve */
+    /* ezt azért használjuk, hogy az animációk ne remegjenek */
+    margin-bottom: 6rem;
+
+    &--main {
+        display: block;
+        /* Ezzel oldjuk meg, hogy egy sorban csak ő lehessen a block kizárólagos sort ad*/
+        font-weight: 400;
+        font-size: 6rem;
+        letter-spacing: 3.5rem;
+        /* a betűk közötti távolságot mondja meg*/
+    
+        animation-name: moveInLeft;
+        /* animáció amit hozzá rendelünk */
+        animation-duration: 1s;
+        /* a hozzárendelt animáció ideje*/
+        /*animation-delay: 3s;*/
+        /* animáció előtti szünet */
+        /*animation-iteration-count: 3; */
+        /* hányszor játsza le az animációt */
+        animation-timing-function: ease-out;
+        /*az animáció idejének eloszlását változtatja */
+    }
+
+    &--sub {
+        display: block;
+        /* Ezzel oldjuk meg, hogy egy sorban csak ő lehessen a block kizárólagos sort ad*/
+        font-size: 2rem;
+        font-weight: 700;
+        letter-spacing: 1.7rem;
+        /* a betűk közötti távolságot mondja meg*/
+    
+        animation: moveInRight 1s ease-out;
+        /* animation-name: moveInRight;
+        animation-duration: 1s;
+        animation-timing-function: ease-out; */
+    }
+}
+
+.heading-secondary {
+    display: inline-block;
+    font-size: 3.5rem;
+    text-transform: uppercase;
+    font-weight: bold;
+    background-image: linear-gradient(to right, $color-primary-light, $color-primary-dark);
+    color: transparent; // átlátszó betűk
+    transition: all .2s;
+    -webkit-background-clip: text; // a szöveg mögött lesz csak a háttér szin / kép
+    letter-spacing: .2rem;
+
+    &:hover {
+        // A feredégét állirja be a szövegnek, ha el szeretnénk ferditeni y tengely szerint
+        transform: skewX(5deg);
+        text-shadow: .5rem 1rem 2rem rgba($color-black, .2);
+    }
+}
+
+.heading-tertiary {
+    font-size: $default-font-size;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.paragraph {
+    font-size: $default-font-size;
+
+    &:not(:last-child) {
+        margin-bottom: 3rem;
+    }
+}
+
+/* pseudo classes - pszeudo elemek */
+/*
+Ezek egyfajta állapotokat határoznak meg mint pl a 
+visited state - amikor a linket meglátogattuk
+link state - amikor a link még nincs meglátogatva
+hover state - amikor az elemünk fölötte van
+active state - amikor rákattintunk valamire
+*/

@@ -1,0 +1,34 @@
+/* Ebbe a fájlba azok kerülnek amik általánosabb megfogalmazásúak */
+
+*,
+*::after,
+*::before {
+    /* reseteljük a fölösleges adatokat */
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+    /* azért kell, mert a bodyban már definiáljuk a border-box-ot így mindenki azt örökli meg alapvetően */
+    /*
+    Amennyiben a box-sizing:
+    - content-box abban az esetben ha a width-et 25%-ra állítod a bordert/margint/paddingot ezen felüll adja meg
+    - border-box amennyiben a widthet 25%-ra állítod ezt nem fogja megtoldani a border/margin/padding széleivelv
+    */
+}
+
+html {
+    font-size: 62.5%;
+}
+
+/* alap definiálások */
+body {
+    font-family: "Lato", sans-serif;
+    font-weight: 400;
+    /* milyen vastagok legyenek a betűk */
+    font-size: 1.6rem;
+    line-height: 1.7;
+    /* ez a betűmérethet van viszonyítva, hogy mennyivel legyen nagyobb a fenti és lenti spaceing*/
+    color: $color-grey-dark;
+    padding: 3rem;
+
+    box-sizing: border-box;
+}

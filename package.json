@@ -1,0 +1,23 @@
+{
+  "name": "natorous",
+  "version": "1.0.0",
+  "description": "Landing page",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "compile:sass": "node-sass sass/main.scss css/style.css -w"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/szendezsombor/natorous.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/szendezsombor/natorous/issues"
+  },
+  "homepage": "https://github.com/szendezsombor/natorous#readme",
+  "devDependencies": {
+    "node-sass": "^5.0.0"
+  }
+}

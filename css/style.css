@@ -1,182 +1,139 @@
-/*
-COLORS:
+@charset "UTF-8";
+/* Animációk */
+@keyframes moveInLeft {
+  0% {
+    opacity: 0;
+    /* láthatóság 0 nem látható 1 teljesen látható */
+    transform: translateX(-10rem);
+    /* 
+        x tengely mentén(szélesség) toljuk el az elemet amire ez rákerül
+        */ }
+  80% {
+    transform: translateX(1rem); }
+  100% {
+    opacity: 1;
+    /* láthatóság 0 nem látható 1 teljesen látható */
+    transform: translate(0); } }
 
-Light green: #7ed56f
-Medium green: #55c57a
-Dark green: #28b485
+@keyframes moveInRight {
+  0% {
+    opacity: 0;
+    /* láthatóság 0 nem látható 1 teljesen látható */
+    transform: translateX(10rem);
+    /* 
+        x tengely mentén(szélesség) toljuk el az elemet amire ez rákerül
+        */ }
+  80% {
+    transform: translateX(-1rem); }
+  100% {
+    opacity: 1;
+    /* láthatóság 0 nem látható 1 teljesen látható */
+    transform: translate(0); } }
 
-*/
-/* reseteljük a fölösleges adatokat */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box; 
-    /*
+@keyframes moveInBottom {
+  0% {
+    opacity: 0;
+    /* láthatóság 0 nem látható 1 teljesen látható */
+    transform: translateY(3rem);
+    /* 
+        x tengely mentén(szélesség) toljuk el az elemet amire ez rákerül
+        */ }
+  100% {
+    opacity: 1;
+    /* láthatóság 0 nem látható 1 teljesen látható */
+    transform: translate(0); } }
+
+/* Ebbe a fájlba azok kerülnek amik általánosabb megfogalmazásúak */
+*,
+*::after,
+*::before {
+  /* reseteljük a fölösleges adatokat */
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+  /* azért kell, mert a bodyban már definiáljuk a border-box-ot így mindenki azt örökli meg alapvetően */
+  /*
     Amennyiben a box-sizing:
     - content-box abban az esetben ha a width-et 25%-ra állítod a bordert/margint/paddingot ezen felüll adja meg
     - border-box amennyiben a widthet 25%-ra állítod ezt nem fogja megtoldani a border/margin/padding széleivelv
-    */
-}
+    */ }
+
+html {
+  font-size: 62.5%; }
 
 /* alap definiálások */
 body {
-    font-family: "Lato", sans-serif;
-    font-weight: 400; /* milyen vastagok legyenek a betűk */
-    font-size: 16px;
-    line-height: 1.7; /* ez a betűmérethet van viszonyítva, hogy mennyivel legyen nagyobb a fenti és lenti spaceing*/
-    color: #777;
-    padding: 30px;
-}
+  font-family: "Lato", sans-serif;
+  font-weight: 400;
+  /* milyen vastagok legyenek a betűk */
+  font-size: 1.6rem;
+  line-height: 1.7;
+  /* ez a betűmérethet van viszonyítva, hogy mennyivel legyen nagyobb a fenti és lenti spaceing*/
+  color: #777;
+  padding: 3rem;
+  box-sizing: border-box; }
 
-.header {
-    height: 95vh;
-    /* Két háttér képet/szint definiálunk mindig az előrébb lévő lesz előrébb
-
-    A linear-gradient(to right ,#7ed56f, #28b485) esetében a to right paraméterrel:
-    to right - a bal oldali szin húzódik a jobb oldali szin felé
-    to left - a jobb oldali szin húzódik a bal oldali szin felé
-
-    */
-    background-image: linear-gradient(
-        to right bottom,
-        rgba(128, 214, 113, 0.8),
-         rgba(40, 180, 133, 0.8)
-        ), 
-         url('../img/hero.jpg');
-    background-size: cover; /* megmondja a háttérnek, hogy fit-elje bele a konténer méretbe aminek a háttere*/
-    background-position: top; /* 
-    Melyik része látszódjon a képnek biztosan background-position: 
-    top - a teteje mindig látszani fog az aljából fog mindig levágni, ha már nem fér ki a kép
-    bottom - az alja mindig látszani fog a tetejéből fog mindig levágni, ha már nem fér ki a kép
-    center - az közepe mindig látszani fog a tetejéből és az aljából fog mindig levágni, ha már nem fér ki a kép
-    */
-    clip-path: polygon(0 0, 100% 0, 100% 60%, 0 100%); /*
-    A clip path függvénnyel a képet ki tudjuk vágni
-    palygon - esetén egy négyszöget vágunk ki ami látszódni fog
-    */
-    position: relative; /*
-        Ezzel beállítjuk, hogy a gyerek elemek hozzá képest lesznek relative eltolva,ha offsetet állítunk
-    */
-}
-
-.logo-box {
-    /* 
-    Abszolút pozicionálás:
-    - ekkor az elemünk a teljes dokumentumot veszi alapúl
-    */
-    position: absolute;
-    top: 40px; /* Offset, hogy mennyivel legyen eltolva a lgközelebbi relative elemtől fentről */
-    left: 40px; /* Offset, hogy mennyivel legyen eltolva a lgközelebbi relative elemtől balról */
-}
-
-.logo {
-    height: 35px;
-}
-
-.logo:hover {
-    animation: moveInRight 1s ease-out;
-}
-
-.text-box {
-    position: absolute; /* a legközelebbi relative elemhez képest toljuk el*/
-    top: 50%; /* Eltoljuk fentről 50%-al */
-    left: 50%; /* Eltoljuk balról 50%-al */
-    transform: translate(-50%, -50%); /* 
-    az elem méretéhez képest eltransformáljuk
-    úgy, hogy bal irányba eltoljuk -50%-al, vagy is a div felével
-    és fentről -50%al vagy is megint a div felével
-    */
-    text-align: center; /*
-    minden benne levő inline block elementet középre fog rakni ami text alapon képződött.
-    */
-}
-
+/* Szöveggel kapcsolatos módositások*/
 .heading-primary {
-    color: #fff;
-    text-transform: uppercase; /* a szöveg minden karakterét nagybetűvé alakítja */
-
-    backface-visibility: hidden; /* az element hátsó része hidden lesz vagy is el lesz rejtve */
-    /* ezt azért használjuk, hogy az animációk ne remegjenek */
-    margin-bottom: 60px;
-}
-
-.heading-primary-main {
-    display: block; /* Ezzel oldjuk meg, hogy egy sorban csak ő lehessen a block kizárólagos sort ad*/
+  color: #fff;
+  text-transform: uppercase;
+  /* a szöveg minden karakterét nagybetűvé alakítja */
+  backface-visibility: hidden;
+  /* az element hátsó része hidden lesz vagy is el lesz rejtve */
+  /* ezt azért használjuk, hogy az animációk ne remegjenek */
+  margin-bottom: 6rem; }
+  .heading-primary--main {
+    display: block;
+    /* Ezzel oldjuk meg, hogy egy sorban csak ő lehessen a block kizárólagos sort ad*/
     font-weight: 400;
-    font-size: 60px;
-    letter-spacing: 35px; /* a betűk közötti távolságot mondja meg*/
-
-    animation-name: moveInLeft; /* animáció amit hozzá rendelünk */
-    animation-duration: 1s; /* a hozzárendelt animáció ideje*/
-    /*animation-delay: 3s;*/ /* animáció előtti szünet */
-    /*animation-iteration-count: 3; *//* hányszor játsza le az animációt */
-    animation-timing-function: ease-out; /*az animáció idejének eloszlását változtatja */
-}
-
-.heading-primary-sub {
-    display: block; /* Ezzel oldjuk meg, hogy egy sorban csak ő lehessen a block kizárólagos sort ad*/
-    font-size: 20px;
+    font-size: 6rem;
+    letter-spacing: 3.5rem;
+    /* a betűk közötti távolságot mondja meg*/
+    animation-name: moveInLeft;
+    /* animáció amit hozzá rendelünk */
+    animation-duration: 1s;
+    /* a hozzárendelt animáció ideje*/
+    /*animation-delay: 3s;*/
+    /* animáció előtti szünet */
+    /*animation-iteration-count: 3; */
+    /* hányszor játsza le az animációt */
+    animation-timing-function: ease-out;
+    /*az animáció idejének eloszlását változtatja */ }
+  .heading-primary--sub {
+    display: block;
+    /* Ezzel oldjuk meg, hogy egy sorban csak ő lehessen a block kizárólagos sort ad*/
+    font-size: 2rem;
     font-weight: 700;
-    letter-spacing: 17px; /* a betűk közötti távolságot mondja meg*/
-
+    letter-spacing: 1.7rem;
+    /* a betűk közötti távolságot mondja meg*/
     animation: moveInRight 1s ease-out;
     /* animation-name: moveInRight;
-    animation-duration: 1s;
-    animation-timing-function: ease-out; */
-}
+        animation-duration: 1s;
+        animation-timing-function: ease-out; */ }
 
-/* Animációk */ 
+.heading-secondary {
+  display: inline-block;
+  font-size: 3.5rem;
+  text-transform: uppercase;
+  font-weight: bold;
+  background-image: linear-gradient(to right, #7ed56f, #28b485);
+  color: transparent;
+  transition: all .2s;
+  -webkit-background-clip: text;
+  letter-spacing: .2rem; }
+  .heading-secondary:hover {
+    transform: skewX(5deg);
+    text-shadow: 0.5rem 1rem 2rem rgba(0, 0, 0, 0.2); }
 
-@keyframes moveInLeft {
-    0% {
-        opacity: 0; /* láthatóság 0 nem látható 1 teljesen látható */
-        transform: translateX(-100px); /* 
-        x tengely mentén(szélesség) toljuk el az elemet amire ez rákerül
-        */
-    }
+.heading-tertiary {
+  font-size: 1.6rem;
+  font-weight: 700;
+  text-transform: uppercase; }
 
-    80% {
-        transform: translateX(10px);
-    }
-
-    100% {
-        opacity: 1; /* láthatóság 0 nem látható 1 teljesen látható */
-        transform: translate(0);
-    }
-}
-
-
-@keyframes moveInRight {
-    0% {
-        opacity: 0; /* láthatóság 0 nem látható 1 teljesen látható */
-        transform: translateX(100px); /* 
-        x tengely mentén(szélesség) toljuk el az elemet amire ez rákerül
-        */
-    }
-
-    80% {
-        transform: translateX(-10px);
-    }
-
-    100% {
-        opacity: 1; /* láthatóság 0 nem látható 1 teljesen látható */
-        transform: translate(0);
-    }
-}
-
-@keyframes moveInBottom {
-    0% {
-        opacity: 0; /* láthatóság 0 nem látható 1 teljesen látható */
-        transform: translateY(30px); /* 
-        x tengely mentén(szélesség) toljuk el az elemet amire ez rákerül
-        */
-    }
-
-    100% {
-        opacity: 1; /* láthatóság 0 nem látható 1 teljesen látható */
-        transform: translate(0);
-    }
-}
+.paragraph {
+  font-size: 1.6rem; }
+  .paragraph:not(:last-child) {
+    margin-bottom: 3rem; }
 
 /* pseudo classes - pszeudo elemek */
 /*
@@ -186,76 +143,197 @@ link state - amikor a link még nincs meglátogatva
 hover state - amikor az elemünk fölötte van
 active state - amikor rákattintunk valamire
 */
+.u-center-text {
+  text-align: center; }
 
-.btn:link,
-.btn:visited {
-    text-transform: uppercase;
-    text-decoration: none;
-    padding: 15px 40px;
-    display: inline-block; /* 
-    mindig kell a block property, ha szeretnénk valami height width padding margin etc 
-    dolgot állítani ami változtatja a méretét a blocknak!!
-    */
-    border-radius: 100px; /*
-    A szélek lekerekítését oldja meg.
-    */
-    transition: transform 0.4s; /*
-    minden ehhez az elemhez tartozó transition mint pl a hover az active 2s alatt fut le
-    */
-    position: relative;
-}
+.u-margin-bottom-big {
+  margin-bottom: 8rem; }
+
+.u-margin-bottom-medium {
+  margin-bottom: 4rem; }
+
+.u-margin-bottom-small {
+  margin-bottom: 1.5rem; }
+
+.btn:link, .btn:visited {
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 1.5rem 4rem;
+  display: inline-block;
+  /* 
+        mindig kell a block property, ha szeretnénk valami height width padding margin etc 
+        dolgot állítani ami változtatja a méretét a blocknak!!
+        */
+  border-radius: 10rem;
+  /*
+        A szélek lekerekítését oldja meg.
+        */
+  transition: transform 0.4s;
+  /*
+        minden ehhez az elemhez tartozó transition mint pl a hover az active 2s alatt fut le
+        */
+  position: relative;
+  font-size: 1.6rem; }
 
 .btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 15px rgba(0,0,0,0.2); /*
-    az első paraméter az x tengely menti offset
-    a második paraméter az y tengely menti offset
-    a harmadik az a blur mértéke
-    a negyedik paraméter a shadow színe
-    veszővel elvállasztva több shadowot is létrehozhatunk
-
-    */
-}
+  transform: translateY(-0.3rem);
+  box-shadow: 0 1rem 1.5rem rgba(0, 0, 0, 0.2);
+  /*
+        az első paraméter az x tengely menti offset
+        a második paraméter az y tengely menti offset
+        a harmadik az a blur mértéke
+        a negyedik paraméter a shadow színe
+        veszővel elvállasztva több shadowot is létrehozhatunk
+    
+        */ }
+  .btn:hover::after {
+    transform: scaleX(1.4) scaleY(1.6);
+    opacity: 0; }
 
 .btn:active {
-    transform: translateY(-1px);
-    box-shadow: 0 5px 10px rgba(0,0,0,0.3);/*
-    ha az offsetet az y tengelyen lejebb vesszük a blurt is lejebb vesszük
-    akkor a gomb hatása sokkal inkább olyan lesz mintha rányomnánk
-    */
-}
+  transform: translateY(-0.1rem);
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.3);
+  /*
+        ha az offsetet az y tengelyen lejebb vesszük a blurt is lejebb vesszük
+        akkor a gomb hatása sokkal inkább olyan lesz mintha rányomnánk
+        */ }
 
-.btn-white {
-    background-color: #fff;
-    color: #777;
-}
+.btn--white {
+  background-color: #fff;
+  color: #777; }
+  .btn--white::after {
+    background-color: #fff; }
 
 .btn::after {
-    content: ""; /* kötelező beírni akárhogyan nem használjuk */
-    display: inline-block;
-    height: 100%; /* a height a btn-hoz képest viszonyítja a magasságot*/
-    width: 100%; /* a height a btn-hoz képest viszonyítja a szélességet*/
-    border-radius: 100px;
-    position: absolute; /* a relative beállított elemhez képest lesz eltolva*/
-    top: 0;
-    left: 0;
-    z-index: -1;
-    transition: all 1s;
-}
+  content: "";
+  /* kötelező beírni akárhogyan nem használjuk */
+  display: inline-block;
+  height: 100%;
+  /* a height a btn-hoz képest viszonyítja a magasságot*/
+  width: 100%;
+  /* a height a btn-hoz képest viszonyítja a szélességet*/
+  border-radius: 10rem;
+  position: absolute;
+  /* a relative beállított elemhez képest lesz eltolva*/
+  top: 0;
+  left: 0;
+  z-index: -1;
+  transition: all 1s; }
 
-.btn-white::after {
-    background-color: #fff;
-}
+.btn--animated {
+  animation: moveInBottom 0.5s ease-out .75s;
+  animation-fill-mode: backwards;
+  /* Ezzel be lehet állítani azt, hogy
+        a kezdeti állapota az elemnek az animáció előtt a 0%nál
+        megadott érték legyen
+        */ }
 
-.btn:hover::after {
-    transform: scaleX(1.4) scaleY(1.6);
-    opacity: 0;
-}
+.btn-text:link, .btn-text:visited {
+  font-size: 1.6rem;
+  color: #55c57a;
+  display: inline-block;
+  text-decoration: none;
+  border-bottom: 1px solid #55c57a;
+  padding: 3px;
+  transition: all .2s; }
 
-.btn-animated {
-    animation: moveInBottom 0.5s ease-out .75s;
-    animation-fill-mode: backwards; /* Ezzel be lehet állítani azt, hogy
-    a kezdeti állapota az elemnek az animáció előtt a 0%nál
-    megadott érték legyen
+.btn-text:hover {
+  background-color: #55c57a;
+  color: #fff;
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px); }
+
+.btn-text:active {
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15);
+  transform: translateY(0px); }
+
+.header {
+  height: 95vh;
+  /* Két háttér képet/szint definiálunk mindig az előrébb lévő lesz előrébb
+
+    A linear-gradient(to right ,#7ed56f, #28b485) esetében a to right paraméterrel:
+    to right - a bal oldali szin húzódik a jobb oldali szin felé
+    to left - a jobb oldali szin húzódik a bal oldali szin felé
+
     */
-}
+  background-image: linear-gradient(to right bottom, rgba(126, 213, 111, 0.8), rgba(40, 180, 133, 0.8)), url("../img/hero.jpg");
+  background-size: cover;
+  /* megmondja a háttérnek, hogy fit-elje bele a konténer méretbe aminek a háttere*/
+  background-position: top;
+  /* 
+    Melyik része látszódjon a képnek biztosan background-position: 
+    top - a teteje mindig látszani fog az aljából fog mindig levágni, ha már nem fér ki a kép
+    bottom - az alja mindig látszani fog a tetejéből fog mindig levágni, ha már nem fér ki a kép
+    center - az közepe mindig látszani fog a tetejéből és az aljából fog mindig levágni, ha már nem fér ki a kép
+    */
+  clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+  /*
+    A clip path függvénnyel a képet ki tudjuk vágni
+    palygon - esetén egy négyszöget vágunk ki ami látszódni fog
+    */
+  position: relative;
+  /*
+        Ezzel beállítjuk, hogy a gyerek elemek hozzá képest lesznek relative eltolva,ha offsetet állítunk
+    */ }
+  .header__logo-box {
+    /* 
+        Abszolút pozicionálás:
+        - ekkor az elemünk a teljes dokumentumot veszi alapúl
+        */
+    position: absolute;
+    top: 4rem;
+    /* Offset, hogy mennyivel legyen eltolva a lgközelebbi relative elemtől fentről */
+    left: 4rem;
+    /* Offset, hogy mennyivel legyen eltolva a lgközelebbi relative elemtől balról */ }
+  .header__logo {
+    height: 3.5rem; }
+    .header__logo:hover {
+      animation: moveInRight 1s ease-out; }
+  .header__text-box {
+    position: absolute;
+    /* a legközelebbi relative elemhez képest toljuk el*/
+    top: 50%;
+    /* Eltoljuk fentről 50%-al */
+    left: 50%;
+    /* Eltoljuk balról 50%-al */
+    transform: translate(-50%, -50%);
+    /* 
+        az elem méretéhez képest eltransformáljuk
+        úgy, hogy bal irányba eltoljuk -50%-al, vagy is a div felével
+        és fentről -50%al vagy is megint a div felével
+        */
+    text-align: center;
+    /*
+        minden benne levő inline block elementet középre fog rakni ami text alapon képződött.
+        */ }
+
+.row {
+  max-width: 114rem;
+  margin: 0 auto; }
+  .row:not(:last-child) {
+    margin-bottom: 8rem; }
+  .row::after {
+    content: "";
+    display: table;
+    clear: both; }
+  .row [class^="col-"] {
+    float: left; }
+    .row [class^="col-"]:not(:last-child) {
+      margin-right: 6rem; }
+  .row .col-1-of-2 {
+    width: calc((100% - 6rem) / 2); }
+  .row .col-1-of-3 {
+    width: calc((100% - 2 * 6rem) / 3); }
+  .row .col-2-of-3 {
+    width: calc(2 * ((100% - 2 * 6rem) / 3) + 6rem); }
+  .row .col-1-of-4 {
+    width: calc((100% - 3 * 6rem) / 4); }
+  .row .col-2-of-4 {
+    width: calc(2 * ((100% - 3 * 6rem) / 4) + 6rem); }
+  .row .col-3-of-4 {
+    width: calc(3 * ((100% - 3 * 6rem) / 4) + 2 * 6rem); }
+
+.section-about {
+  background-color: #f7f7f7;
+  padding: 25rem;
+  margin-top: -20vh; }

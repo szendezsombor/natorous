@@ -1,0 +1,110 @@
+.btn {
+    &:link, &:visited {
+        text-transform: uppercase;
+        text-decoration: none;
+        padding: 1.5rem 4rem;
+        display: inline-block;
+        /* 
+        mindig kell a block property, ha szeretnénk valami height width padding margin etc 
+        dolgot állítani ami változtatja a méretét a blocknak!!
+        */
+        border-radius: 10rem;
+        /*
+        A szélek lekerekítését oldja meg.
+        */
+        transition: transform 0.4s;
+        /*
+        minden ehhez az elemhez tartozó transition mint pl a hover az active 2s alatt fut le
+        */
+        position: relative;
+        font-size: $default-font-size;
+    }
+
+    &:hover {
+        transform: translateY(-0.3rem);
+        box-shadow: 0 1rem 1.5rem rgba($color-black, 0.2);
+        /*
+        az első paraméter az x tengely menti offset
+        a második paraméter az y tengely menti offset
+        a harmadik az a blur mértéke
+        a negyedik paraméter a shadow színe
+        veszővel elvállasztva több shadowot is létrehozhatunk
+    
+        */
+        &::after {
+            transform: scaleX(1.4) scaleY(1.6);
+            opacity: 0;
+        }
+    }
+
+    &:active {
+        transform: translateY(-0.1rem);
+        box-shadow: 0 .5rem 1rem rgba($color-black, 0.3);
+        /*
+        ha az offsetet az y tengelyen lejebb vesszük a blurt is lejebb vesszük
+        akkor a gomb hatása sokkal inkább olyan lesz mintha rányomnánk
+        */
+    }
+
+    &--white {
+        background-color: $color-white;
+        color: $color-grey-dark;
+
+        &::after {
+            background-color: $color-white;
+        }
+    }
+
+    &::after {
+        content: "";
+        /* kötelező beírni akárhogyan nem használjuk */
+        display: inline-block;
+        height: 100%;
+        /* a height a btn-hoz képest viszonyítja a magasságot*/
+        width: 100%;
+        /* a height a btn-hoz képest viszonyítja a szélességet*/
+        border-radius: 10rem;
+        position: absolute;
+        /* a relative beállított elemhez képest lesz eltolva*/
+        top: 0;
+        left: 0;
+        z-index: -1;
+        transition: all 1s;
+    }
+
+    
+
+    &--animated {
+        animation: moveInBottom 0.5s ease-out .75s;
+        animation-fill-mode: backwards;
+        /* Ezzel be lehet állítani azt, hogy
+        a kezdeti állapota az elemnek az animáció előtt a 0%nál
+        megadott érték legyen
+        */
+    }
+}
+
+.btn-text {
+    &:link,
+    &:visited {
+        font-size: $default-font-size;
+        color: $color-primary;
+        display: inline-block;
+        text-decoration: none;
+        border-bottom: 1px solid $color-primary;
+        padding: 3px;
+        transition: all .2s;
+    }
+
+    &:hover {
+        background-color: $color-primary;
+        color: $color-white;
+        box-shadow: 0 1rem 2rem rgba($color-black, $alpha: .15);
+        transform: translateY(-2px)
+    }
+
+    &:active {
+        box-shadow: 0 1rem 2rem rgba($color-black, $alpha: .15);
+        transform: translateY(0px);
+    }
+}

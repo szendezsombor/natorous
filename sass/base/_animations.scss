@@ -1,0 +1,61 @@
+/* Animációk */
+
+@keyframes moveInLeft {
+    0% {
+        opacity: 0;
+        /* láthatóság 0 nem látható 1 teljesen látható */
+        transform: translateX(-10rem);
+        /* 
+        x tengely mentén(szélesség) toljuk el az elemet amire ez rákerül
+        */
+    }
+
+    80% {
+        transform: translateX(1rem);
+    }
+
+    100% {
+        opacity: 1;
+        /* láthatóság 0 nem látható 1 teljesen látható */
+        transform: translate(0);
+    }
+}
+
+
+@keyframes moveInRight {
+    0% {
+        opacity: 0;
+        /* láthatóság 0 nem látható 1 teljesen látható */
+        transform: translateX(10rem);
+        /* 
+        x tengely mentén(szélesség) toljuk el az elemet amire ez rákerül
+        */
+    }
+
+    80% {
+        transform: translateX(-1rem);
+    }
+
+    100% {
+        opacity: 1;
+        /* láthatóság 0 nem látható 1 teljesen látható */
+        transform: translate(0);
+    }
+}
+
+@keyframes moveInBottom {
+    0% {
+        opacity: 0;
+        /* láthatóság 0 nem látható 1 teljesen látható */
+        transform: translateY(3rem);
+        /* 
+        x tengely mentén(szélesség) toljuk el az elemet amire ez rákerül
+        */
+    }
+
+    100% {
+        opacity: 1;
+        /* láthatóság 0 nem látható 1 teljesen látható */
+        transform: translate(0);
+    }
+}
