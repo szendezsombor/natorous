@@ -1,0 +1,73 @@
+.story {
+    width: 75%;
+    margin: 0 auto;
+    box-shadow: 0 3rem 6rem rgba($color: $color-black, $alpha: .1);
+    background-color: rgba($color-white, .6);
+    border-radius: 3px;
+    padding: 6rem;
+    padding-left: 9rem;
+    font-size: $default-font-size;
+    transform: skewX(-12deg);
+    position: relative;
+
+    /*
+    Ez a megoldás a -12 deg feloldására, csak a kép miatt nem működik
+    & > * {
+        transform: skewX(12deg);
+    }
+
+    */
+
+    &__shape {
+        width: 15rem;
+        height: 15rem;
+        float: left;
+        background-color: orange;
+        shape-outside: circle(50% at 50% 50%);
+        /* A shape outside, az az objektumnak az alakját tudja átalakitani, nem kitöltésre
+        hanem úgy, hogy a másik objektum igazodjon hozzá
+        */
+
+        clip-path: circle();
+        /* kör alakura vágja az objektumot, de a formája ami érinkezik a külső objektumokkal az nem változik
+        */
+        transform: translateX(-3rem) skewX(12.01deg);
+    }
+
+    &__img {
+        height: 100%;
+        transform: translateX(-4rem) scale(1.4);
+        transition: all .5s;
+        backface-visibility: hidden;
+        z-index: 0;
+    }
+
+    &__text {
+        transform: skewX(12deg);
+        /* a skewX(-12deg)-et oldja fel*/
+    }
+
+    &__caption {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, 20%);
+        color: white;
+        text-transform: uppercase;
+        font-size: 1.7rem;
+        text-align: center;
+        opacity: 0;
+        transition: all .5s;
+        backface-visibility: hidden;
+    }
+
+    &:hover &__caption {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+
+    &:hover &__img {
+        transform: translateX(-4rem) scale(1);
+        filter: blur(4px) brightness(80%);
+    }
+}
