@@ -17,6 +17,16 @@
 
 html {
     font-size: 62.5%;
+
+    @include respond(tab-port) {
+        font-size: 50%; // 1rem 8/16px = 50%
+    }
+    @include respond(tab-land) {
+        font-size: 56.25%; // 1rem 9/16px = 56.25%
+    }
+    @include respond(big-desktop) {
+        font-size: 75%; // 1rem 12/16px = 56.25%
+    }
 }
 
 /* alap definiálások */
@@ -24,7 +34,7 @@ body {
     font-family: "Lato", sans-serif;
     font-weight: 400;
     /* milyen vastagok legyenek a betűk */
-    font-size: 1.6rem;
+    // font-size: 1.6rem;
     line-height: 1.7;
     /* ez a betűmérethet van viszonyítva, hogy mennyivel legyen nagyobb a fenti és lenti spaceing*/
     color: $color-grey-dark;
@@ -32,3 +42,5 @@ body {
 
     box-sizing: border-box;
 }
+
+
