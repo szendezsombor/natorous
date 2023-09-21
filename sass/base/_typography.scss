@@ -10,6 +10,7 @@
     /* ezt azért használjuk, hogy az animációk ne remegjenek */
     margin-bottom: 6rem;
 
+
     &--main {
         display: block;
         /* Ezzel oldjuk meg, hogy egy sorban csak ő lehessen a block kizárólagos sort ad*/
@@ -17,7 +18,7 @@
         font-size: 6rem;
         letter-spacing: 3.5rem;
         /* a betűk közötti távolságot mondja meg*/
-    
+
         animation-name: moveInLeft;
         /* animáció amit hozzá rendelünk */
         animation-duration: 1s;
@@ -28,6 +29,11 @@
         /* hányszor játsza le az animációt */
         animation-timing-function: ease-out;
         /*az animáció idejének eloszlását változtatja */
+
+        @include respond(phone) {
+            letter-spacing: 1rem;
+            font-size: 5rem;
+        }
     }
 
     &--sub {
@@ -37,7 +43,7 @@
         font-weight: 700;
         letter-spacing: 1.7rem;
         /* a betűk közötti távolságot mondja meg*/
-    
+
         animation: moveInRight 1s ease-out;
         /* animation-name: moveInRight;
         animation-duration: 1s;
@@ -55,6 +61,10 @@
     transition: all .2s;
     -webkit-background-clip: text; // a szöveg mögött lesz csak a háttér szin / kép
     letter-spacing: .2rem;
+
+    @include respond(tab-port) {
+        font-size: 2.5rem;
+    }
 
     &:hover {
         // A feredégét állirja be a szövegnek, ha el szeretnénk ferditeni y tengely szerint
